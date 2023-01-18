@@ -14,10 +14,17 @@ class MyApp extends StatelessWidget {
   // of that type and we get it automatically by Flutter.
 
   // Widget Describes the configuration for an [Element].
+  @override
   Widget build(BuildContext context) {
     // home is core widget which Flutter will bring onto the screen
     return MaterialApp(
-      home: Text('Hello'),
+      // Scaffold is base page design,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My First App'),
+        ),
+        body: Text('This is my default text!'),
+      ),
     );
   }
 }
