@@ -39,16 +39,25 @@ class MyApp extends StatelessWidget {
             ElevatedButton(
               // pass the void function name to `onPressed` without giving ()
               // this will pass the function as pointer & not execute function
-              // before the button pressed
+              // before the button
               onPressed: answerQuestion,
               child: Text('Answer 1'),
             ),
+
             ElevatedButton(
-              onPressed: answerQuestion,
+              // set anonymous functions in onPressed
+              // use anonymous functions when only need in this one place
+              // and never calling it from anywhere else in the application
+              onPressed: () => print('Answer 2 chosen'),
               child: Text('Answer 2'),
             ),
+
             ElevatedButton(
-              onPressed: answerQuestion,
+              // anonymous function with curly braces
+              onPressed: () {
+                // ... do something here
+                print('Answer 3 Chosen');
+              },
               child: Text('Answer 3'),
             )
           ],
