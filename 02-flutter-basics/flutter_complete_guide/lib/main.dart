@@ -9,8 +9,11 @@ void main() {
 
 // turn our class that can be run by Flutter
 class MyApp extends StatelessWidget {
+  var questionIndex = 0;
+
   void answerQuestion() {
-    print('Answer Choosen');
+    questionIndex = questionIndex + 1;
+    print(questionIndex);
   }
 
   // `BuildContext` is a special object type provided by Flutter
@@ -33,7 +36,10 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('The question!'),
+            Text(
+              // questions.elementAt(1),
+              questions[questionIndex],
+            ),
 
             // set null onPressed for avoid error since no method currently developed
             ElevatedButton(
