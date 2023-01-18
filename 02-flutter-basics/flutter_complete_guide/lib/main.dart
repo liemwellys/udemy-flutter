@@ -12,20 +12,20 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-// State<MyApp> tells MyAppState is belongs to MyApp
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+// State<MyApp> tells _MyAppState is belongs to MyApp
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     // execute changing state using setState(() {})
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   // `BuildContext` is a special object type provided by Flutter
@@ -50,7 +50,7 @@ class MyAppState extends State<MyApp> {
           children: [
             Text(
               // questions.elementAt(1),
-              questions[questionIndex],
+              questions[_questionIndex],
             ),
 
             // set null onPressed for avoid error since no method currently developed
@@ -58,7 +58,7 @@ class MyAppState extends State<MyApp> {
               // pass the void function name to `onPressed` without giving ()
               // this will pass the function as pointer & not execute function
               // before the button
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
               child: Text('Answer 1'),
             ),
 
