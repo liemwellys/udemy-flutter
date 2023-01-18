@@ -9,6 +9,10 @@ void main() {
 
 // turn our class that can be run by Flutter
 class MyApp extends StatelessWidget {
+  void answerQuestion() {
+    print('Answer Choosen');
+  }
+
   // `BuildContext` is a special object type provided by Flutter
   // in the material.dart file and this context object is
   // of that type and we get it automatically by Flutter.
@@ -33,15 +37,18 @@ class MyApp extends StatelessWidget {
 
             // set null onPressed for avoid error since no method currently developed
             ElevatedButton(
-              onPressed: null,
+              // pass the void function name to `onPressed` without giving ()
+              // this will pass the function as pointer & not execute function
+              // before the button pressed
+              onPressed: answerQuestion,
               child: Text('Answer 1'),
             ),
             ElevatedButton(
-              onPressed: null,
+              onPressed: answerQuestion,
               child: Text('Answer 2'),
             ),
             ElevatedButton(
-              onPressed: null,
+              onPressed: answerQuestion,
               child: Text('Answer 3'),
             )
           ],
