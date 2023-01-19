@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import './question.dart';
+import './answer.dart';
 
 void main() {
   // runs our Flutter app once the app booted up
@@ -55,34 +57,10 @@ class _MyAppState extends State<MyApp> {
               questions[_questionIndex],
             ),
 
-            // set null onPressed for avoid error since no method currently developed
-            ElevatedButton(
-              // pass the void function name to `onPressed` without giving ()
-              // this will pass the function as pointer & not execute function
-              // before the button
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
-              ),
-              onPressed: _answerQuestion,
-              child: Text('Answer 1'),
-            ),
-
-            ElevatedButton(
-              // set anonymous functions in onPressed
-              // use anonymous functions when only need in this one place
-              // and never calling it from anywhere else in the application
-              onPressed: () => print('Answer 2 chosen'),
-              child: Text('Answer 2'),
-            ),
-
-            ElevatedButton(
-              // anonymous function with curly braces
-              onPressed: () {
-                // ... do something here
-                print('Answer 3 Chosen');
-              },
-              child: Text('Answer 3'),
-            )
+            // pass function's pointer to the Answer Widget
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
           ],
         ),
       ),
