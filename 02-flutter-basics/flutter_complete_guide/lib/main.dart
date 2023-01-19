@@ -60,6 +60,9 @@ class _MyAppState extends State<MyApp> {
               // pass the void function name to `onPressed` without giving ()
               // this will pass the function as pointer & not execute function
               // before the button
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
+              ),
               onPressed: _answerQuestion,
               child: Text('Answer 1'),
             ),
