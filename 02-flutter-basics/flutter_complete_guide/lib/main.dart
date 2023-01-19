@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() {
   // runs our Flutter app once the app booted up
@@ -11,7 +12,6 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
@@ -48,8 +48,10 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(
-              // questions.elementAt(1),
+            // use custom widget for split into smaller widget
+            // makes rebuilds more efficient & easier to maintain code
+            Question(
+              // alternative syntax: questions.elementAt(1),
               questions[_questionIndex],
             ),
 
