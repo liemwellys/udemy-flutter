@@ -20,6 +20,21 @@ class MyApp extends StatefulWidget {
 
 // State<MyApp> tells _MyAppState is belongs to MyApp
 class _MyAppState extends State<MyApp> {
+  final questions = const [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['Black', 'Red', 'Green', 'White']
+    },
+    {
+      'questionText': 'What\'s your favourite animal?',
+      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion']
+    },
+    {
+      'questionText': 'What\'s your favourite instructor?',
+      'answers': ['Max', 'Max', 'Max', 'Max']
+    }
+  ];
+
   var _questionIndex = 0;
 
   void _answerQuestion() {
@@ -28,6 +43,9 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
+    if (_questionIndex < questions.length) {
+      print('We have more questions');
+    }
   }
 
   // `BuildContext` is a special object type provided by Flutter
@@ -37,21 +55,6 @@ class _MyAppState extends State<MyApp> {
   // Widget Describes the configuration for an [Element].
   @override
   Widget build(BuildContext context) {
-    // use const when the value is known at compile time
-    const questions = const [
-      {
-        'questionText': 'What\'s your favorite color?',
-        'answers': ['Black', 'Red', 'Green', 'White']
-      },
-      {
-        'questionText': 'What\'s your favourite animal?',
-        'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion']
-      },
-      {
-        'questionText': 'What\'s your favourite instructor?',
-        'answers': ['Max', 'Max', 'Max', 'Max']
-      }
-    ];
     return MaterialApp(
       // home is core widget which Flutter will bring onto the screen
       // Scaffold is base page design,
@@ -59,23 +62,27 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('My First App'),
         ),
-        body: Column(
-          children: [
-            // use custom widget for split into smaller widget
-            // makes rebuilds more efficient & easier to maintain code
-            Question(
-              // use square brackets to access a key in a map
-              questions[_questionIndex]['questionText'],
-            ),
+        body: _questionIndex < questions.length
+            ? Column(
+                children: [
+                  // use custom widget for split into smaller widget
+                  // makes rebuilds more efficient & easier to maintain code
+                  Question(
+                    // use square brackets to access a key in a map
+                    questions[_questionIndex]['questionText'],
+                  ),
 
-            // pass function's pointer to the Answer Widget
-            // use map to transform list of questions into list of Answer Widget
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList()
-          ],
-        ),
+                  // pass function's pointer to the Answer Widget
+                  // use map to transform list of questions into list of Answer Widget
+                  ...(questions[_questionIndex]['answers'] as List<String>)
+                      .map((answer) {
+                    return Answer(_answerQuestion, answer);
+                  }).toList()
+                ],
+              )
+            : Center(
+                child: Text('You did it'),
+              ),
       ),
     );
   }
