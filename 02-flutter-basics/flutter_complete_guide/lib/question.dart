@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class Question extends StatelessWidget {
   // final marks the value will never change
   // after initialization in constructor
+  // use final when don't know the value at compile time
+  // value is known on run-time
   final String questionText;
 
   Question(this.questionText);

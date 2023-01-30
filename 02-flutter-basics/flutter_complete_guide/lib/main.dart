@@ -37,7 +37,8 @@ class _MyAppState extends State<MyApp> {
   // Widget Describes the configuration for an [Element].
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    // use const when the value is known at compile time
+    const questions = const [
       {
         'questionText': 'What\'s your favorite color?',
         'answers': ['Black', 'Red', 'Green', 'White']
