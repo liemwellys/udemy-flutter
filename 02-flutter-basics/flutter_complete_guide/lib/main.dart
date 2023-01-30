@@ -63,14 +63,16 @@ class _MyAppState extends State<MyApp> {
             // use custom widget for split into smaller widget
             // makes rebuilds more efficient & easier to maintain code
             Question(
-              // alternative syntax: questions.elementAt(1),
-              questions[_questionIndex],
+              // use square brackets to access a key in a map
+              questions[_questionIndex]['questionText'],
             ),
 
             // pass function's pointer to the Answer Widget
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            // use map to transform list of questions into list of Answer Widget
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),

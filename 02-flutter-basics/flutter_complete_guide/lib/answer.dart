@@ -9,10 +9,11 @@ class Answer extends StatelessWidget {
    * so that receives no input and also won't return anything.
    */
   final VoidCallback selectHandler;
+  final String answerText;
 
   // store void callback functions in selectHandler
   // when class is instantiated
-  Answer(this.selectHandler);
+  Answer(this.selectHandler, this.answerText);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class Answer extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
         ),
         onPressed: selectHandler,
-        child: Text('Answer 1'),
+        child: Text(answerText),
       ),
     );
   }
