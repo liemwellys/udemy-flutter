@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   final Function addTx;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
-  NewTransaction({Key key, this.addTx}) : super(key: key);
+  const NewTransaction({Key key, this.addTx}) : super(key: key);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   void submitData() {
     final enteredTitle = titleController.text;
@@ -15,10 +22,14 @@ class NewTransaction extends StatelessWidget {
       return;
     }
 
-    addTx(
+    // use widget to access method in different class
+    widget.addTx(
       enteredTitle,
       enteredAmount,
     );
+
+    // directly close modal bottom sheet after submit data
+    Navigator.of(context).pop();
   }
 
   @override
@@ -33,6 +44,7 @@ class NewTransaction extends StatelessWidget {
             TextField(
               decoration: const InputDecoration(labelText: 'Title'),
               controller: titleController,
+              onSubmitted: (_) => submitData(),
               // onChanged: (val) {
               //   titleInput = val;
               // },
@@ -44,7 +56,7 @@ class NewTransaction extends StatelessWidget {
                 signed: false,
                 decimal: true,
               ),
-              onSubmitted: (_) => submitData,
+              onSubmitted: (_) => submitData(),
               // onChanged: (val) => amountInput = val,
             ),
             TextButton(
