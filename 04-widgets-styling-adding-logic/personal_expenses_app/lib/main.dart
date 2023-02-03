@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import './widgets/user_transactions.dart';
+
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter App',
       home: MyHomePage(),
     );
@@ -13,6 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key key}) : super(key: key);
+
   // String titleInput;
   // String amountInput;
 
@@ -20,7 +26,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: const Text('Flutter App'),
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -28,12 +34,13 @@ class MyHomePage extends StatelessWidget {
         children: <Widget>[
           Container(
             width: double.infinity,
-            child: Card(
+            child: const Card(
               color: Colors.blue,
-              child: Text('CHART'),
               elevation: 5,
+              child: Text('CHART'),
             ),
           ),
+          const UserTransactions(),
         ],
       ),
     );

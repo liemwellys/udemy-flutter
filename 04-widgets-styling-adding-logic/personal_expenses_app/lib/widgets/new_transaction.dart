@@ -4,38 +4,35 @@ class NewTransaction extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
+  NewTransaction({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: const InputDecoration(labelText: 'Title'),
               controller: titleController,
               // onChanged: (val) {
               //   titleInput = val;
               // },
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
+              decoration: const InputDecoration(labelText: 'Amount'),
               controller: amountController,
               // onChanged: (val) => amountInput = val,
             ),
             TextButton(
-              onPressed: () {
-                print(titleController.text);
-                print(amountController.text);
-                // print(titleInput);
-                // print(amountInput);
-              },
+              onPressed: () {},
               style: TextButton.styleFrom(
                 foregroundColor: Colors.purple,
               ),
-              child: Text('Add Transaction'),
+              child: const Text('Add Transaction'),
             )
           ],
         ),
