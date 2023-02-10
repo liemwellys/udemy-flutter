@@ -123,6 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     final appBar = AppBar(
       title: const Text('Personal Expenses'),
       actions: <Widget>[
@@ -135,6 +137,13 @@ class _MyHomePageState extends State<MyHomePage> {
     final heightAdjustment = MediaQuery.of(context).size.height -
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
+    final txListWidget = SizedBox(
+      height: heightAdjustment * 0.7,
+      child: TransactionList(
+        userTransactions: _userTransactions,
+        deleteTx: _deleteTransactions,
+      ),
+    );
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -142,32 +151,34 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text('Show Chart'),
-                Switch(
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                )
-              ],
-            ),
-            _showChart
-                ? SizedBox(
-                    height: heightAdjustment * 0.7,
-                    child: Chart(recentTransactions: _recentTransactions),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text('Show Chart'),
+                  Switch(
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    },
                   )
-                : SizedBox(
-                    height: heightAdjustment * 0.7,
-                    child: TransactionList(
-                      userTransactions: _userTransactions,
-                      deleteTx: _deleteTransactions,
-                    ),
-                  ),
+                ],
+              ),
+            if (!isLandscape)
+              SizedBox(
+                height: heightAdjustment * 0.3,
+                child: Chart(recentTransactions: _recentTransactions),
+              ),
+            if (!isLandscape) txListWidget,
+            if (isLandscape)
+              _showChart
+                  ? SizedBox(
+                      height: heightAdjustment * 0.7,
+                      child: Chart(recentTransactions: _recentTransactions),
+                    )
+                  : txListWidget
           ],
         ),
       ),
