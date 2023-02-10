@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             _showChart
                 ? SizedBox(
-                    height: heightAdjustment * 0.3,
+                    height: heightAdjustment * 0.7,
                     child: Chart(recentTransactions: _recentTransactions),
                   )
                 : SizedBox(
